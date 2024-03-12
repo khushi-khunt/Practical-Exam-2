@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM-VALIDATION</title>
+</head>
+<body>
+    
+</body>
+</html>
+<h1 align="center">Form Validation</h1>
+<form>
+    <table align="center" border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>Name :- </td>
+            <td>
+                <input type="text" id="name">
+                <span id="nameerr"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Email :- </td>
+            <td>
+                <input type="text" id="useremail">
+                <span id="emailerr"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Password :- </td>
+            <td>
+                <input type="text" id="userpassword">
+                <span id="passerr"></span>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="button" onclick="save()" value="submit"></td>
+        </tr>
+    </table>
+</form>
+<script type="text/javascript">
+    function save() {
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('useremail').value;
+        let password = document.getElementById('userpassword').value;
+        if (!name) {
+            var n = document.getElementById('nameerr');
+            n.innerHTML = "Name is required";
+            n.style.color = "red";
+        }
+        if (!email) {
+            var e = document.getElementById('emailerr');
+            e.innerHTML = "Email is required";
+            e.style.color = "red"
+        } 
+        if (!password) {
+            var p = document.getElementById('passerr');
+            p.innerHTML = "Password is required";
+            p.style.color = "red"
+        } else {
+            if (password.length < 8) {
+                document.getElementById('passerr').innerHTML = "Password must be at least 8 characters"
+                document.getElementById('passerr').style.color = "red"
+
+
+            } else if (password.search(/[a-z]/) < 0) {
+                document.getElementById('passerr').innerHTML = "Password must contain at least one lowercase letter"
+                document.getElementById('passerr').style.color = "red"
+            } else if (password.search(/[A-Z]/) < 0) {
+                document.getElementById('passerr').innerHTML = "Password must contain at least one uppercase letter"
+                document.getElementById('passerr').style.color = "red"
+            } else if (password.search(/[0-9]/) < 0) {
+                document.getElementById('passerr').innerHTML = "Password must contain at least one number"
+                document.getElementById('passerr').style.color = "red"
+            }else{
+                var spcl = /[!@#$%^&*_=+-]/g;
+                if(!password.match(spcl)){
+                    document.getElementById('passerr').innerHTML = "Password must contain at least one special charecter"
+                    document.getElementById('passerr').style.color = "red"
+                }
+            }
+        }
+    }
+</script>
